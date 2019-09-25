@@ -38,11 +38,16 @@ public class Square implements GLSurfaceView.Renderer {
     private int mProgram;
 
     static final int COORDS_PER_VERTEX = 3;
-    static float triangleCoords[] = {
-            -0.5f, 0.5f, 0.0f, // top left
-            -0.5f, -0.5f, 0.0f, // bottom left
-            0.5f, -0.5f, 0.0f, // bottom right
-            0.5f, 0.5f, 0.0f  // top right
+//    static float triangleCoords[] = {
+//            -0.5f, 0.5f, 0.0f, // top left
+//            -0.5f, -0.5f, 0.0f, // bottom left
+//            0.5f, -0.5f, 0.0f, // bottom right
+//            0.5f, 0.5f, 0.0f  // top right
+//    };
+    static float triangleCoords[] = {   //默认按逆时针方向绘制
+            0.0f,  1.0f, 0.0f, // 顶点
+            -1.0f, -0.5f, 0.0f, // 左下角
+            1.0f, -0.5f, 0.0f  // 右下角
     };
 
     static short index[] = {
@@ -122,7 +127,7 @@ public class Square implements GLSurfaceView.Renderer {
     @Override
     public void onDrawFrame(GL10 gl) {
         // Redraw background color
-        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT | GLES20.GL_DEPTH_BUFFER_BIT);
+        GLES20.glClear(GLES20.GL_COLOR_BUFFER_BIT);
 
         //将程序加入到OpenGLES2.0环境
         GLES20.glUseProgram(mProgram);
