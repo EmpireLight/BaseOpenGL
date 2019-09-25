@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     Square square;
     Triangle triangle;
     boolean rendererSet;
-    MyGLRenderer mRenderer;
+//    MyGLRenderer mRenderer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +25,10 @@ public class MainActivity extends AppCompatActivity {
 
         // 创建OpenGL ES 2.0的上下文
         glSurfaceView.setEGLContextClientVersion(2);
-        mRenderer = new MyGLRenderer();
+//        mRenderer = new MyGLRenderer();
+        Square square = new Square(glSurfaceView);
         //设置Renderer用于绘图
-        glSurfaceView.setRenderer(mRenderer);
+        glSurfaceView.setRenderer(square);
         //只有在绘制数据改变时才绘制view，可以防止GLSurfaceView帧重绘
         glSurfaceView.setRenderMode(GLSurfaceView.RENDERMODE_WHEN_DIRTY);
     }

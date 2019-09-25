@@ -67,12 +67,14 @@ public class Square implements GLSurfaceView.Renderer {
     float color[] = {1.0f, 1.0f, 1.0f, 1.0f};
 
     public Square(View mView) {
-        ByteBuffer bb = ByteBuffer.allocateDirect(
+        // 初始化顶点字节缓冲区，用于存放形状的坐标
+        ByteBuffer bb = ByteBuffer.allocateDirect(//(每个浮点数占用4个字节
                 triangleCoords.length * 4);
-        bb.order(ByteOrder.nativeOrder());
-        vertexBuffer = bb.asFloatBuffer();
-        vertexBuffer.put(triangleCoords);
-        vertexBuffer.position(0);
+
+        bb.order(ByteOrder.nativeOrder());//设置使用设备硬件的原生字节序
+        vertexBuffer = bb.asFloatBuffer();//从ByteBuffer中创建一个浮点缓冲区
+        vertexBuffer.put(triangleCoords);// 把坐标都添加到FloatBuffer中
+        vertexBuffer.position(0);//设置buffer从第一个坐标开始读
 
         ByteBuffer cc = ByteBuffer.allocateDirect(index.length * 2);
         cc.order(ByteOrder.nativeOrder());
@@ -107,14 +109,14 @@ public class Square implements GLSurfaceView.Renderer {
         //利用glViewport()设置Screen space的大小，在onSurfaceChanged中回调
         GLES20.glViewport(0, 0, width, height);
 
-//        //计算宽高比
-//        float ratio = (float) width / height;
-//        //设置透视投影
-//        Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
-//        //设置相机位置
-//        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
-//        //计算变换矩阵
-//        Matrix.multiplyMM(mMVPMatrix, 0, mProjectMatrix, 0, mViewMatrix, 0);
+        //计算宽高比
+        float ratio = (float) width / height;
+        //设置透视投影
+        Matrix.frustumM(mProjectMatrix, 0, -ratio, ratio, -1, 1, 3, 7);
+        //设置相机位置
+        Matrix.setLookAtM(mViewMatrix, 0, 0, 0, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f);
+        //计算变换矩阵
+        Matrix.multiplyMM(mMVPMatrix, 0, mProjectMatrix, 0, mViewMatrix, 0);
     }
 
     @Override
