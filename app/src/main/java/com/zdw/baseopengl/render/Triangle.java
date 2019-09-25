@@ -88,9 +88,9 @@ public class Triangle {
         //设置buffer从第一个坐标开始读
         vertexBuffer.position(0);
         // 编译shader代码
-        int vertexShader = MyGLRenderer.loadShader(GLES20.GL_VERTEX_SHADER,
+        int vertexShader = GlUtil.loadShader(GLES20.GL_VERTEX_SHADER,
                 vertexShaderCode);
-        int fragmentShader = MyGLRenderer.loadShader(GLES20.GL_FRAGMENT_SHADER,
+        int fragmentShader = GlUtil.loadShader(GLES20.GL_FRAGMENT_SHADER,
                 fragmentShaderCode);
 
         // 创建空的OpenGL ES Program
